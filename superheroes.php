@@ -63,10 +63,78 @@ $superheroes = [
   ], 
 ];
 
+
+
 ?>
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+
+<?php
+
+    function superheroMap($superheroes_array){
+        $name_map = [];
+        $alias_map = [];
+        for ($place = 0; $place<count($superheroes_array); $place++){
+            $name_map[$superheroes_array[$place]['name']] = $place;
+            $alias_map[$superheroes_array[$place]['alias']] = $place;
+        }
+        $result = [
+        'name_map' => $name_map,
+        'alias_map' => $alias_map
+        ];
+
+        return $result;
+       
+    }
+
+   
+
+?>
+
+<?php 
+    $name = trim($_POST['name']) ?? ""; // Remover trailing and ending whitspaces
+    $name = filter_var($name, FILTER_SANITIZE_SPECIAL_CHARS); // Sanitise input
+    $name = ucwords($name); //input is in the appropriate form for info retrieval
+
+?>
+
+
+<?php 
+
+    if ($name != ""){
+        $superhero_dict = superheroMap($superheroes);
+        if (isset($superhero_dict['name_map'][$name])){
+            $index = $superhero_dict['name_map'][$name];
+            $search_result = ['alias' => $superheroes[$index]['alias'], 'name' => $superheroes[$index]['name'],
+            'biography' => $superheroes[$index]['biography']];
+            echo json_encode($search_result);
+        }
+        elseif(isset($superhero_dict['alias_map'][$name])){
+            $index = $superhero_dict['alias_map'][$name];
+            $search_result = ['alias' => $superheroes[$index]['alias'], 'name' => $superheroes[$index]['name'],
+            'biography' => $superheroes[$index]['biography']];
+            echo json_encode($search_result);
+        }
+
+        else{
+            echo json_encode("Superhero not found.");
+        }
+            
+    }
+
+    else{
+        $aliases_array = [];
+        for($place = 0; $place<count($superheroes); $place++){
+            $aliases_array[] = $superheroes[$place]['alias'];
+        }
+        echo json_encode($aliases_array);
+    }
+
+?>
+
+
+    
+
+
+
+
+

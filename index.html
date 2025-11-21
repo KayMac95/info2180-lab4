@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avengers Character Search</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="app.js"></script>
-</head>
-<body>
-    <h1> Avengers Character Search</h1>
-    <button id = 'searchbtn'>Search</button>
-    <p id = 'superherolist'></p>
-    
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Avengers Character Search</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <header>
+        <div class = 'heading'>
+            <h1> Avengers Character Search</h1>
+        </div>
+        </header>
+    </body>
+
+    <main>
+        <div class="container">
+            <div class="instruction">
+                <h4> Search by Full Name or Alias</h4>
+            </div>
+
+            <div class="form-arrange">
+                <div id="item1"></div>
+                <div id="item2">
+                    <form id = "heroform" >
+                        <input type="text", id="searchfield", name="searchfield">
+                    </form>
+                </div>
+                <div id="item3">
+                    <button id = 'searchbtn'>Search</button>
+                </div>
+                <div item="item4"></div>
+            </div><br>
+
+            <div class="result_heading">
+                <h2>RESULT</h2>
+            </div>
+
+            <hr></hr>
+
+            <div id="result"></div>
+        </div>
+
+        
+
+    </main>
+
 </html>
